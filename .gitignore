@@ -1,0 +1,8 @@
+.DS_Store
+.pathmx/
+.pathmx-check/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
