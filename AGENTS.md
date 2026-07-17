@@ -1,45 +1,19 @@
-# PathMX Learning Starter Instructions
+# PathMX Learning
 
-Start by reading `README.md` and `paths/index.path.md`.
+This is a learning repository for the current user. It is used to keep track of their learning goals, active learning curriculum, and progress.
 
-## Purpose
+Use the pathmx-authoring-skill when writing content for the user. Use the `/teach` skill when writing new material for the user to work through.
 
-Keep this repository a clean, reusable learning starter. Experiments belong in
-`paths/labs/`; move them into a maintained topic only after they improve the
-learner journey.
+- PathMX is the tool that present the learning markdown/html-based curriculum to the user in a player. The PathMX cli sets up a local server that builds any curriculum changes on the fly and live updates the player.
+- See the PathMX onesheet docs for how PathMX works and use the pathmx authoring skill.
+- It works best if you write new content block-by-block, or in some cases, beat-by-beat.
+- Whene sharing new linked content with the learner, always use their local server url pointing to the source, block or beat they should focus on. Use `?play` to start the player in the integrated browser
 
-## Authoring
+--- 
 
-- Use ordinary readable Markdown as the source of truth.
-- Use type-hinted filenames such as `.path.md`, `.guide.md`, `.lab.md`,
-  `.persona.md`, and `.components.md`.
-- Use relative Markdown links between Sources.
-- Separate major playable moments with `---` on its own line.
-- Make each block one coherent learning move: orient, explain/model, practice,
-  feedback/reflection, or next step.
-- Write complete valid blocks rather than streaming partial Markdown into a
-  live Source.
-- Do not invent one-off PathMX directives or authored schema fields.
-
-Use the repo-local `pathmx-authoring` skill for substantive learning-content
-work.
-
-## Working rules
-
-- Check `git status` before editing and preserve work you did not create.
-- Keep `main` runnable and make one outcome per short-lived branch.
-- Avoid adding dependencies, scripts, or configuration until a real workflow
-  requires them.
-- Never commit credentials, private invitation links, raw agent transcripts,
-  or sensitive learner data.
-
-## Verification
-
-For authored-source changes:
-
-```sh
-pathmx build -o .pathmx-check
-```
-
-Use `pathmx play` for visual review. Do not use the default `.pathmx` directory
-for scratch verification while a Player may be running.
+Notes:
+- add the learning vocabulary/glosasry idea with flashcards 
+- add automation prompts/loops for use with agents etc.
+- add a scripts folder for custom integration type stuff
+- create hub/dashboard entry point for the learner to start with
+- create a default theme/space
