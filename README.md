@@ -1,55 +1,50 @@
 # PathMX Learning Starter
 
-A small starter workspace for building durable, interactive learning paths
-with PathMX and AI agents.
+A starter workspace for building durable, interactive learning paths with
+PathMX and AI agents.
 
-This repository is intentionally light. It provides a learner profile, a first
-topic path, an experiment lab, repository instructions, and a focused PathMX
-authoring skill. Add structure only when the learning journey needs it.
+The workspace is intentionally light: a learner home, a profile, an activity
+log, one worked-example path (`welcome/`), a small component family, and the
+`learn` + `pathmx` agent skills. Structure grows only when the learning
+journey needs it.
 
-## Current contributor setup
+## Setup
 
-The eventual product should install through the PathMX Learning Codex plugin.
-Until that is ready, contributors use the scoped PathMX package through Bun:
+Install PathMX (requires [Bun](https://bun.sh)) and open the player:
 
 ```sh
 bun add -g @fellowhumans/pathmx@latest
-pathmx --version
-pathmx play
+pathmx play paths/index.path.md --open
 ```
 
-For a one-off run without a global PathMX install:
+For a one-off run without a global install:
 
 ```sh
-bunx @fellowhumans/pathmx@latest play
+bunx @fellowhumans/pathmx@latest play paths/index.path.md --open
 ```
 
-Open the Player URL printed by the command.
+Then start a session by asking your agent to `/learn`.
 
 ## Repository shape
 
 ```text
-AGENTS.md
-.agents/skills/pathmx-authoring/SKILL.md
+AGENTS.md                       # workspace contract for agents
+.agents/skills/                 # learn + pathmx skills (Codex-native; .claude/skills symlinks here)
 paths/
-├── index.path.md
-├── profile/index.persona.md
-├── topics/getting-started.path.md
-└── labs/sandbox.lab.md
+├── index.path.md               # the learner's home (root source)
+├── learner.persona.md          # learner profile
+├── learning.activity.md        # syntheses and evidence across all paths
+├── theme.css                   # shared styling
+├── assets/learning.components.md
+└── welcome/                    # worked-example path: outcome, index, lesson, assessment
 ```
 
-- `paths/index.path.md` is the learner's home.
-- `paths/profile/` holds confirmed learner goals and preferences.
-- `paths/topics/` holds maintained learning paths.
-- `paths/labs/` is a safe place for experiments before promotion.
+The skills are synced from [pathmx-skills](https://github.com/pathmx/pathmx-skills);
+edit them there, not here. Everything under `paths/` is yours — the `welcome/`
+path doubles as the example new paths are modeled on.
 
 ## Privacy
 
 Do not commit credentials, private links, institutional records, or sensitive
-learner information. Keep the checked-in profile generic unless the learner
-explicitly chooses to share it.
-
-## Status
-
-Early Build Week scaffold. The teaching workflow, plugin, and richer learning
-components will evolve through real learner testing.
+learner information. Keep the checked-in profile limited to what the learner
+explicitly chooses to share.

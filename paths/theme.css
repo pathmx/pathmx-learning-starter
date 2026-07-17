@@ -1,0 +1,8 @@
+/* Shared styling for the whole learning space.
+   Loaded via [@root.styles] from paths/index.path.md.
+   Prefer theme tokens (frontmatter `theme:`) for global choices;
+   use this file for small shared touches. */
+
+.pmx-document a {
+  text-underline-offset: 0.2em;
+}

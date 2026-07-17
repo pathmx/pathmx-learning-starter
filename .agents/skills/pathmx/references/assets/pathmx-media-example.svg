@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img" aria-labelledby="title desc">
+  <title id="title">Plant cell overview</title>
+  <desc id="desc">A simplified plant cell showing the cell wall, nucleus, and central vacuole.</desc>
+  <rect width="800" height="360" rx="24" fill="#f4f7f1"/>
+  <rect x="70" y="45" width="660" height="270" rx="70" fill="#cfe8ba" stroke="#3f6f3a" stroke-width="12"/>
+  <rect x="95" y="70" width="610" height="220" rx="55" fill="#eaf5df" stroke="#79a96b" stroke-width="5"/>
+  <ellipse cx="245" cy="180" rx="70" ry="58" fill="#c9b6e4" stroke="#655080" stroke-width="6"/>
+  <circle cx="245" cy="180" r="19" fill="#80669f"/>
+  <rect x="370" y="105" width="245" height="150" rx="55" fill="#b8dcf0" stroke="#4c829f" stroke-width="6"/>
+  <g font-family="system-ui, sans-serif" font-size="22" font-weight="650" fill="#203326">
+    <text x="35" y="32">Cell wall</text>
+    <path d="M120 38 L145 64" stroke="#203326" stroke-width="3" fill="none"/>
+    <text x="175" y="270">Nucleus</text>
+    <path d="M230 252 L238 224" stroke="#203326" stroke-width="3" fill="none"/>
+    <text x="430" y="292">Central vacuole</text>
+    <path d="M505 272 L505 251" stroke="#203326" stroke-width="3" fill="none"/>
+  </g>
+</svg>

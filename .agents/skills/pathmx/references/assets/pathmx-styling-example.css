@@ -1,0 +1,15 @@
+.pathmx-styling-example {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 2px solid var(--pmx-color-accent);
+  border-radius: var(--pmx-radius, 1rem);
+  background: var(--pmx-color-surface);
+  color: var(--pmx-color-fg);
+}
+
+.pathmx-styling-example strong {
+  color: var(--pmx-color-accent);
+  font-family: var(--pmx-font-heading);
+  font-size: 1.2em;
+}
