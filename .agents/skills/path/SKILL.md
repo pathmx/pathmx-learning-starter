@@ -52,7 +52,7 @@ Record only learner-confirmed context. Avoid sensitive data by default.
 3. Teach one small win at the proximal edge.
 4. Add retrieval, practice, and immediate feedback.
 5. Write a plain Markdown assessment tied to the destination.
-6. Ask for a linked artifact or written response that can be reviewed later.
+6. Ask for durable question responses, a linked artifact, or both.
 7. Gate the next lesson on evidence, not “I finished.”
 8. If evidence shows a gap, revise or add a smaller lesson and reassess.
 9. Record a synthesis: evidence, change in perspective, and what opens next.

@@ -41,6 +41,7 @@ The `welcome/` path is the maintained example.
 - Do not commit credentials, private links, or sensitive learner data.
 - Use relative Source and asset links.
 - Do not invent PathMX syntax.
-- Do not author PathMX questions, actions, or spaceholders yet.
+- Use only the built-in question mappings documented by `/pathmx`.
+- Do not author general actions or spaceholders yet.
 - Build into `.pathmx-check`, never a live `.pathmx` directory.
 - Review warnings and use the Player for presentation or interaction changes.

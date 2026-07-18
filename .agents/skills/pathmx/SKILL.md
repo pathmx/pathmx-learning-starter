@@ -1,6 +1,6 @@
 ---
 name: pathmx
-description: Author, revise, review, and verify PathMX sources. Use for Markdown, Sources, Blocks, Beats, links, directives, components, Play pacing, media, code, math, styling, configuration, and CLI work in a PathMX repository.
+description: Author, revise, review, and verify PathMX sources. Use for Markdown, Sources, Blocks, Beats, links, directives, questions, components, Play pacing, media, code, math, styling, configuration, and CLI work in a PathMX repository.
 ---
 
 # PathMX
@@ -43,6 +43,7 @@ Read only what the task needs:
 - [Markdown authoring](./references/pathmx-markdown.md)
 - [Player and pacing](./references/pathmx-player.md)
 - [Directives](./references/pathmx-directives.md)
+- [Questions and responses](./references/pathmx-questions.md)
 - [Literate Components](./references/pathmx-literate-components.md)
 - [Code](./references/pathmx-code.md)
 - [Math](./references/pathmx-math.md)
@@ -59,5 +60,6 @@ Read only what the task needs:
 - Use source-facing `type`, not a new `kind` field.
 - Do not update PathMX or project config unless requested.
 - Do not write diagnostic output into a live `.pathmx` directory.
-- Do not author questions, actions, or spaceholders from this skill yet.
+- Use only the built-in question mappings in the questions reference.
+- Do not author general actions or spaceholders from this skill yet.
 - If a feature is absent or version-mismatched, report the gap.
