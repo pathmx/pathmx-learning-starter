@@ -1,46 +1,76 @@
-# PathMX Player
+# PathMX Player and Play
 
-<!-- TODO: draft. Ground truth: pathmx repo — paths/docs/play-authoring.design.md,
-     paths/docs/specs/pathmx-play-mode.spec.md,
-     packages/build/src/plugins/core/choreographer/ -->
+The build fixes the Play route. The Player reads built Block and Beat data; it
+does not invent structure from the browser DOM.
 
-How the PathMX player turns a built Source into a guided, focused learning
-sequence — and how to author content that plays well.
+## Model
 
-## Play model
+| Level | Use |
+| --- | --- |
+| Block | Coarse stop created by `---`. |
+| Browse heading | Free-scroll map stop. |
+| Step | Fine Beat such as a paragraph, list item, row, code step, or component state. |
 
-<!-- TODO: Blocks are the coarse stops, Beats the fine-grained stops. The build
-     choreographer annotates the rendered HTML (`data-pathmx-beat*`); the player
-     only reads those annotations — structure is fixed at build time. -->
+Forward and backward move through the route. Skip-out moves up one nesting
+level. Active and seen state are projected onto the rendered content. The URL
+owns Play position through `?play=<BeatId>`; `#fragment` remains a browse
+target.
 
-## Focus levels
+## Pacing controls
 
-<!-- TODO: the three focus levels — `block` (slide-like, one stop per `---`
-     Block), `browse` (headings as map stops, free scroll), `step` (paragraphs,
-     list items, table rows, media, display math, code steps, component
-     states). -->
+Authors control pacing with:
 
-## Navigation
+- Block boundaries;
+- `play.steps` density for lists, tables, and code;
+- code focus steps such as `[1-2|3]`;
+- Block-local table focus steps; and
+- ordered Literate Component states.
 
-<!-- TODO: forward/backward, skip-out (one nesting level per press), seen beats
-     dim, active beat carries `data-pathmx-play-state="active"`. Play position
-     is owned by the URL: `?play=<BeatId>`; `#fragment` is browse/scroll only. -->
+Use [Markdown authoring](./pathmx-markdown.md) for Blocks and density,
+[Code](./pathmx-code.md) for fence steps, and
+[Literate Components](./pathmx-literate-components.md) for state.
 
-## Pacing controls (authoring)
+## Table steps
 
-<!-- TODO: what authors control — Block structure (`---`), `play.steps` density
-     (tables/lists/code), code focus steps, table focus steps, ordered
-     component `states`. Link to pathmx-markdown.md (Beats) and pathmx-code.md. -->
+For one table in a Block, add a small ordered sequence:
 
-## Interactive beats
+```md
+---
 
-<!-- TODO: play navigation and direct clicks drive the same component state
-     channel; component state persists when play moves on; components must work
-     fully outside play. Gated beats (can't advance until answered) are
-     designed but not yet implemented — do not author against them. -->
+<!--
+id: compare-cases
+play:
+  table:
+    steps:
+      - label: Compare inputs
+        rows: 1-2
+        columns: 1-3
+      - label: Inspect output
+        columns: 4
+-->
 
-## Authoring for LX
+## Compare cases
 
-<!-- TODO: one Block = one coherent move; keep meaningful stages as
-     addressable Beats; don't hide learning steps inside an opaque component
-     loop; the structure you write IS the route. -->
+| Case | A | B | Output |
+| --- | --- | --- | --- |
+| One | 2 | 3 | 5 |
+| Two | 4 | 5 | 9 |
+```
+
+Rows and columns are one-based. A step needs `rows`, `columns`, or both. Build
+warnings fall back to ordinary row Beats.
+
+## Interactive Beats
+
+Play and direct interaction share a Literate Component's ordered state. The
+component must also work outside Play. Use component state for presentation,
+not durable learner evidence.
+
+## Authoring review
+
+- Make each Block one coherent move.
+- Keep meaningful stages addressable.
+- Avoid long Blocks with dozens of Beats.
+- Do not hide essential steps in an opaque component loop.
+- Check forward, backward, and skip-out behavior.
+- Check keyboard, pointer, touch, and narrow layouts when interaction changes.

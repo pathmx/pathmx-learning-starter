@@ -1,38 +1,33 @@
 ---
 type: assessment
-status: active
+status: ready
 ---
 
-# Self-Check: Using the Player
+# Using the Player Assessment
 
-Answer from memory first, then unfold each answer to check yourself. If any
-answer surprises you, replay the [lesson](./index.lesson.md) before moving on.
+## Evidence target
 
----
+Navigate a lesson in Play mode, explain its basic structure, and identify where
+learning progress is recorded.
 
-## Questions
+## Transfer task
 
-1. How do you move forward and backward through a lesson in Play?
-2. What is a *Beat*?
-3. Where is your progress recorded, and what three things go in a synthesis?
+Use the Player to move forward and backward through the lesson and flip the
+card. Then write a short response that:
 
-> [!question]- Answer 1
-> The right arrow advances one step; the left arrow goes back. Add `?play`
-> to a page URL to enter Play mode.
+1. names the controls you used;
+2. explains what a Beat is; and
+3. names the files that hold progress and syntheses.
 
-> [!question]- Answer 2
-> One focusable step in the player — a paragraph, a list item, a card flip.
-> Blocks are the slides; Beats are the steps inside them.
+Save the response as
+`paths/welcome/evidence/using-the-player.response.md`. After it is reviewed,
+link it from the activity log.
 
-> [!question]- Answer 3
-> The path index shows your position; the activity log records a synthesis
-> per completed lesson: what you learned, what changed in how you see the
-> domain, and what it opens next.
+## Rubric
 
----
+- Describes forward and backward navigation correctly.
+- Explains a Beat as one focusable item inside a Block.
+- Identifies the path index and activity log.
+- States that a synthesis records evidence, a shift, and what opens next.
 
-## Done?
-
-If you answered all three without peeking, tell your agent — it will mark
-this lesson complete and write your first synthesis with you. Then start
-your first real path with `/learn`.
+The next lesson stays gated until the evidence meets this rubric.

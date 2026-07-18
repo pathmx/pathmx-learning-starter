@@ -1,0 +1,4 @@
+interface:
+  display_name: "PathMX"
+  short_description: "Author and verify PathMX sources"
+  default_prompt: "Use $pathmx to make this readable PathMX content and verify the result."

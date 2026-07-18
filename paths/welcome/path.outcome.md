@@ -12,12 +12,12 @@ the PathMX player or run a learning session.
 
 ## Point B
 
-The learner can complete one full lesson loop on their own: play a lesson in
-the player, pass its self-check, and knows where their progress and records
-live.
+The learner can complete one full lesson loop: play a lesson, submit durable
+evidence, and identify where progress and syntheses are recorded.
 
 ## Rubric
 
-- Navigates a lesson in Play mode (forward, backward, and out)
-- Interacts with a component and understands the reveal is part of the lesson
-- Can say where syntheses are recorded and what goes in one
+- Navigates a lesson in Play mode.
+- Explains what a Beat is.
+- Identifies where progress and syntheses are recorded.
+- Records an assessment response that can be reviewed later.

@@ -1,4 +1,5 @@
 ---
+type: path
 status: active
 theme:
   color:
@@ -11,7 +12,7 @@ theme:
 A durable place for goals, learning paths, practice, and evidence — built to
 be played, not just read.
 
-- [Learner profile](./learner.persona.md)
+- [Learner profile](./learner.profile.md)
 - [Learning activity](./learning.activity.md)
 
 ---
@@ -20,7 +21,7 @@ be played, not just read.
 
 - **→ [Welcome: learn how learning works here](./welcome/index.path.md)** *(start here)*
 
-When you are ready to learn something real, ask your agent with `/learn` —
+When you are ready to learn something real, ask your agent with `/path` —
 it will help you shape a goal and grow a new path beside this one.
 
 ---

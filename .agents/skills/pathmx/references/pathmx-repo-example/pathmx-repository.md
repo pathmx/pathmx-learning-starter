@@ -1,3 +1,23 @@
-# Simple PathMX Repository Example
+# Small PathMX Repository
 
-This is a demo of a PathMX repository structure for reference only. PathMX repositories should be shaped to the domain they are being used in by using consistent domain-specific type hints and folder organization.
+This example is a two-Source graph with one root and one lesson.
+
+## File types
+
+| File | Role |
+| --- | --- |
+| `paths/index.path.md` | Root and path hub. |
+| `paths/lessons/code-with-agents.lesson.md` | Playable lesson. |
+
+```text
+pathmx-repo-example/
+└── paths/
+    ├── index.path.md
+    └── lessons/
+        └── code-with-agents.lesson.md
+```
+
+The root link makes the lesson reachable in this graph. A different root could
+link to a different view of the same Sources.
+
+Read the [root Source](./paths/index.path.md).

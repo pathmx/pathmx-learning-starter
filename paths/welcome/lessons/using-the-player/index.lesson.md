@@ -56,7 +56,7 @@ Three files carry your journey:
 - [The activity log](../../../learning.activity.md) records a short
   **synthesis** each time you complete a lesson: what you learned, what
   changed in how you see things, and what it opens next.
-- [Your profile](../../../learner.persona.md) holds goals and preferences
+- [Your profile](../../../learner.profile.md) holds goals and preferences
   you choose to share.
 
 When you finish a lesson, your agent updates the map and writes the
@@ -73,4 +73,4 @@ id: wrap-up
 That is the whole mechanic: play forward, interact, and let the record
 accumulate. Now prove it to yourself:
 
-[Take the self-check](./lesson.assessment.md)
+[Take the assessment](./lesson.assessment.md)

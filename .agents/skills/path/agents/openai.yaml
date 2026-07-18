@@ -1,0 +1,6 @@
+interface:
+  display_name: "Personal Learning Path"
+  short_description: "Build one adaptive learning path"
+  default_prompt: "Use $path to create a learning path for my stated goal."
+policy:
+  allow_implicit_invocation: false

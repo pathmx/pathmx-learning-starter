@@ -1,11 +1,12 @@
 ---
+type: profile
 status: draft
 ---
 
 # Learner Profile
 
-Confirmed learner goals and preferences. Keep it learner-owned and editable,
-and record only what the learner explicitly shares.
+Confirmed learner goals and preferences. Record only what the learner chooses
+to share.
 
 ---
 
@@ -21,7 +22,7 @@ and record only what the learner explicitly shares.
 
 - Existing strengths: to be discovered
 - Formats that help: to be discovered
-- Constraints or accessibility needs: share only what is useful
+- Useful constraints or accessibility needs: to be discovered
 
 ---
 

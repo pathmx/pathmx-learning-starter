@@ -1,4 +1,5 @@
 ---
+type: path
 status: active
 ---
 
@@ -12,4 +13,4 @@ Learn how learning works here: the player, the loop, and your records.
 ## Lessons
 
 - [ ] **→ [Using the player](./lessons/using-the-player/index.lesson.md)** *(current)*
-- [ ] Start your first real path with `/learn` *(your own journey begins here)*
+- [ ] Start your first real path with `/path` *(your own journey begins here)*

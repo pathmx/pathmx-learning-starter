@@ -1,17 +1,14 @@
-# Learning Path Title
+---
+type: path
+status: active
+---
 
-A brief intro to the learning path.
+# Code with Agents
 
-## Next
-
-- [Learn how to code with agents](./lessons/code-with-agents.lesson.md)
-
---
-
-## Learned
+A small path for learning one safe agent workflow.
 
 ---
 
-## Reference
+## Current lesson
 
----
+- [Review before applying](./lessons/code-with-agents.lesson.md)

@@ -4,10 +4,7 @@ componentName: flip-note
 
 # Flip Note
 
-A minimal stateful component used by the literate components reference as a
-live example. It shows the smallest useful contract: named slots, one prop
-with a fallback, an ordered two-state domain that Play can traverse, scoped
-CSS with a state selector, and a script that flips state on click or key.
+Live fixture for the Literate Components reference.
 
 ```html
 <article class="flip-note" states="front | back" tabindex="0" role="button" aria-label="{{ label: Flip note }}">

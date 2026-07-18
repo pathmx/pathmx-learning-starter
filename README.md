@@ -5,7 +5,7 @@ PathMX and AI agents.
 
 The workspace is intentionally light: a learner home, a profile, an activity
 log, one worked-example path (`welcome/`), a small component family, and the
-`learn` + `pathmx` agent skills. Structure grows only when the learning
+`path` + `pathmx` agent skills. Structure grows only when the learning
 journey needs it.
 
 ## Setup
@@ -23,25 +23,25 @@ For a one-off run without a global install:
 bunx @fellowhumans/pathmx@latest play paths/index.path.md --open
 ```
 
-Then start a session by asking your agent to `/learn`.
+Then start a session by asking your agent to `/path`.
 
 ## Repository shape
 
 ```text
 AGENTS.md                       # workspace contract for agents
-.agents/skills/                 # learn + pathmx skills (Codex-native; .claude/skills symlinks here)
+.agents/skills/                 # path + pathmx skills
 paths/
 ├── index.path.md               # the learner's home (root source)
-├── learner.persona.md          # learner profile
+├── learner.profile.md          # learner profile
 ├── learning.activity.md        # syntheses and evidence across all paths
 ├── theme.css                   # shared styling
 ├── assets/learning.components.md
 └── welcome/                    # worked-example path: outcome, index, lesson, assessment
 ```
 
-The skills are synced from [pathmx-skills](https://github.com/pathmx/pathmx-skills);
-edit them there, not here. Everything under `paths/` is yours — the `welcome/`
-path doubles as the example new paths are modeled on.
+The skills are synced from [pathmx-skills](https://github.com/pathmx/pathmx-skills).
+Everything under `paths/` belongs to the learner. The `welcome/` path is the
+example for new paths.
 
 ## Privacy
 
