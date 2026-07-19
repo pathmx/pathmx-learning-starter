@@ -1,0 +1,22 @@
+{
+  "name": "pathmx-learning-starter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/server.ts",
+    "demo": "bun run scripts/demo.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "check": "bun run typecheck && bun test",
+    "smoke:fake": "bun test tests/learning-loop.test.ts --test-name-pattern fake",
+    "smoke:codex": "bun run scripts/smoke-codex.ts"
+  },
+  "dependencies": {
+    "@fellowhumans/pathmx": "0.1.19"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.11",
+    "typescript": "5.9.3"
+  }
+}

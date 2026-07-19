@@ -19,10 +19,11 @@ be played, not just read.
 
 ## Active Paths
 
+- **＋ [Start a new learning path](./new.path.md)**
 - **→ [Welcome: learn how learning works here](./welcome/index.path.md)** *(start here)*
 
-When you are ready to learn something real, ask your agent with `/path` —
-it will help you shape a goal and grow a new path beside this one.
+Describe a goal in the Player and Coach will propose a practical outcome and
+short roadmap beside your durable response.
 
 ---
 
