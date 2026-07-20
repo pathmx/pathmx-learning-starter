@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test": "bun test",
     "check": "bun run typecheck && bun test",
-    "smoke:fake": "bun test tests/learning-loop.test.ts --test-name-pattern fake",
+    "smoke:fake": "bun test tests/onboarding.test.ts --test-name-pattern fake",
     "smoke:codex": "bun run scripts/smoke-codex.ts"
   },
   "dependencies": {

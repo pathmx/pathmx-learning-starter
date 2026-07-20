@@ -3,6 +3,7 @@ import os from "node:os"
 import path from "node:path"
 import type { AgentDriver, LearningTurnContext } from "./drivers"
 import {
+  type LearningTurnProposal,
   learningTurnProposalJsonSchema,
   parseLearningTurnProposal,
 } from "./proposals"
@@ -154,7 +155,7 @@ export function createCodexExecDriver(options: {
   timeoutMs?: number
   logTailBytes?: number
   runner?: CodexExecRunner
-} = {}): AgentDriver {
+} = {}): AgentDriver<LearningTurnProposal> {
   const executable = options.executable ?? "codex"
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS
   const logTailBytes = options.logTailBytes ?? DEFAULT_LOG_TAIL_BYTES

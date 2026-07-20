@@ -1,13 +1,15 @@
 ---
 type: path
 status: active
----
-
-# Make a New Learning Path
-
-Describe what should become possible. Coach will use this response to propose
-one practical outcome and a short roadmap.
-
+actions:
+  coach-begin: learning.beginTurn
+  coach-apply: learning.applyTurn
+  coach-fail: learning.failTurn
+theme:
+  measure: 54rem
+  prose:
+    size: 1.05rem
+    leading: 1.6
 ---
 
 <!--
@@ -19,40 +21,22 @@ actions:
   submit: questions.submitFields
 -->
 
-## Shape the goal
+# Build a path around your goal
 
-> I want to learn **___**<!-- @response.field id=topic label="What do you want to learn?" placeholder="e.g. greenhouse effect" -->.
+Tell us enough to make the first few steps useful. You can refine the path as
+you learn.
+
+> **What would you like to learn?**<br>
+> ___<!-- @response.field id=topic label="What would you like to learn?" placeholder="e.g. Understand the greenhouse effect" -->
 >
-> I want to be able to **___**<!-- @response.field id=outcome label="What should become possible?" placeholder="e.g. explain it with an everyday example" -->.
+> **What would you like to be able to do?**<br>
+> ___<!-- @response.field id=outcome label="What would you like to be able to do?" placeholder="e.g. Explain it with an everyday example" -->
 >
-> I am starting with **___**<!-- @response.field id=starting-point label="What do you already know?" placeholder="e.g. a rough idea but no clear model" -->.
+> **Where are you starting?**<br>
+> ___<!-- @response.field id=starting-point label="Where are you starting?" placeholder="e.g. I have a rough idea but no clear model" -->
 >
-> I have **___**<!-- @response.field id=time label="How much time do you have?" placeholder="e.g. three 20-minute sessions" -->.
+> **What time can you make for this?**<br>
+> ___<!-- @response.field id=time label="What time can you make for this?" placeholder="e.g. Three 20-minute sessions" -->
 
----
-
-<!-- id: next-move -->
-
-## What happens next
-
-Your response is saved first. Coach then adds a durable turn receipt and at
-most three ordinary Markdown Blocks. Reloading this Source never depends on the
-original agent transcript.
-
-- [Meet Coach](./coach.persona.md)
-- [See the available learning patterns](./library/component-catalog.guide.md)
-
----
-
-<!--
-type: path-proposal
-id: path-proposal
-status: awaiting-goal
-actions:
-  confirm: learning.confirmPath
--->
-
-## Your proposed Path will appear here
-
-Submit the goal above. Coach will shape a readable proposal here before you
-decide whether to create its Path and first Lesson.
+[@styles]: ./learning-starter.css
+[coach-context]: ./coach.persona.md

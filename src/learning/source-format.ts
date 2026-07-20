@@ -41,7 +41,7 @@ function failureMessage(message: string | undefined) {
 
 function receiptBlock(options: {
   receiptId: string
-  status: "pending" | "complete" | "failed"
+  status: "pending" | "failed"
   causeRunId: string
   expectedResponseHash: string
   attempt: number
@@ -49,16 +49,14 @@ function receiptBlock(options: {
 }): PathMXAuthoredBlock {
   const heading =
     options.status === "pending"
-      ? "Coach is preparing your next move…"
-      : options.status === "complete"
-        ? "Coach prepared the next move"
-        : "Coach could not finish this turn"
+      ? "Building your starting path…"
+      : "We could not build the path yet"
   const body =
     options.status === "pending"
-      ? "Your response is saved. This receipt remains here if the process stops."
-      : options.status === "complete"
-        ? "The generated Blocks below were applied through the recorded coach Action."
-        : `${failureMessage(options.message) || "The turn failed."} You can retry without losing your response.`
+      ? "Your goal is saved. We are shaping a useful first outcome and a few steps that fit the time you have."
+      : "Your goal is saved. Try again when you are ready."
+  const error =
+    options.status === "failed" ? failureMessage(options.message) : undefined
   return {
     data: {
       type: "agent-turn",
@@ -68,6 +66,7 @@ function receiptBlock(options: {
       expectedResponse: options.expectedResponseHash,
       actor: "coach",
       attempt: options.attempt,
+      ...(error ? { error } : {}),
     },
     markdown: `## ${heading}\n\n${body}`,
   }
@@ -95,19 +94,44 @@ function receiptAttempt(receipt: SourceBlock) {
   return typeof receipt.data.attempt === "number" ? receipt.data.attempt : 1
 }
 
-export function completedReceiptBlock(options: {
+function proposalMarkdown(block: LearningTurnProposal["blocks"][number]) {
+  return `## ${block.title}\n\n${block.markdown}`
+}
+
+export function completedTurnBlocks(options: {
   receipt: SourceBlock
   receiptId: string
   causeRunId: string
   expectedResponseHash: string
+  proposal: LearningTurnProposal
 }) {
-  return receiptBlock({
-    receiptId: options.receiptId,
-    status: "complete",
-    causeRunId: options.causeRunId,
-    expectedResponseHash: options.expectedResponseHash,
-    attempt: receiptAttempt(options.receipt),
-  })
+  const [first, ...remaining] = options.proposal.blocks
+  if (!first) {
+    throw new Error("A completed learning turn requires a proposal Block.")
+  }
+  return {
+    primary: {
+      data: {
+        type: "agent-turn",
+        id: options.receiptId,
+        status: "complete",
+        causeRun: options.causeRunId,
+        expectedResponse: options.expectedResponseHash,
+        actor: "coach",
+        attempt: receiptAttempt(options.receipt),
+        proposal: first.id,
+      },
+      markdown: proposalMarkdown(first),
+    } satisfies PathMXAuthoredBlock,
+    additional: remaining.map((block, index) => ({
+      data: {
+        type: "agent-response",
+        id: `${options.receiptId}-${index + 2}-${block.id}`,
+        agent: { actor: "coach", causedBy: options.causeRunId },
+      },
+      markdown: proposalMarkdown(block),
+    })) satisfies PathMXAuthoredBlock[],
+  }
 }
 
 export function failedReceiptBlock(options: {
@@ -127,24 +151,11 @@ export function failedReceiptBlock(options: {
   })
 }
 
-export function agentResponseBlocks(options: {
-  receiptId: string
-  causeRunId: string
-  proposal: LearningTurnProposal
-}): PathMXAuthoredBlock[] {
-  return options.proposal.blocks.map((block, index) => ({
-    data: {
-      type: "agent-response",
-      id: `${options.receiptId}-${index + 1}-${block.id}`,
-      agent: { actor: "coach", causedBy: options.causeRunId },
-    },
-    markdown: `## ${block.title}\n\n${block.markdown}`,
-  }))
-}
-
 export async function questionResponseHash(response: Record<string, string>) {
   const canonical = Object.fromEntries(
-    Object.entries(response).sort(([left], [right]) => left.localeCompare(right)),
+    Object.entries(response).sort(([left], [right]) =>
+      left.localeCompare(right),
+    ),
   )
   const bytes = new TextEncoder().encode(JSON.stringify(canonical))
   const buffer = new ArrayBuffer(bytes.byteLength)
@@ -173,29 +184,8 @@ export function readQuestionResponse(source: Source, questionId: string) {
       (entry): entry is [string, string] => typeof entry[1] === "string",
     ),
   )
-  return Object.keys(response).length === Object.keys(question.data.response).length
+  return Object.keys(response).length ===
+    Object.keys(question.data.response).length
     ? response
     : undefined
-}
-
-export function readAgentResponseBlocks(source: Source, causeRunId: string) {
-  return source.blocks.flatMap((block) => {
-    const agent = isRecord(block.data.agent) ? block.data.agent : undefined
-    if (
-      block.data.type !== "agent-response" ||
-      agent?.causedBy !== causeRunId
-    ) {
-      return []
-    }
-    const body = block.markdown.trim()
-    const heading = body.match(/^## ([^\n]+)\n*/)
-    if (!heading?.[1]) return []
-    return [
-      {
-        id: String(block.data.id),
-        title: heading[1].trim(),
-        markdown: body.slice(heading[0].length).trim(),
-      },
-    ]
-  })
 }

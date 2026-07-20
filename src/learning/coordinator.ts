@@ -6,19 +6,12 @@ import type {
 import type { PathMXPlaySessionRef } from "@fellowhumans/pathmx/actor"
 import { projectLearningContext } from "./context-projector"
 import type { AgentDriver } from "./drivers"
-import { questionResponseHash, receiptIdForRun } from "./source-format"
+import { receiptIdForRun } from "./source-format"
 
-const LEARNER_ACTIONS = new Set([
-  "questions.submitFields",
-  "questions.submitSingleChoice",
-  "questions.submitText",
-])
-const SHARED_CONTEXT_SOURCES = [
-  "learner.profile",
-  "coach.persona",
-  "library/component-catalog.guide",
-  "assets/learning.components",
-] as const
+const ONBOARDING_SOURCE_ID = "new.path"
+const ONBOARDING_QUESTION_ID = "learning-goal"
+const ONBOARDING_ACTION = "questions.submitFields"
+const SHARED_CONTEXT_SOURCES = ["coach.persona"] as const
 
 function resultRecord(event: PathMXFinalizedActionEvent) {
   const result = event.actionRun.finished.outcome.result
@@ -27,25 +20,13 @@ function resultRecord(event: PathMXFinalizedActionEvent) {
     : undefined
 }
 
-async function eventResponseHash(
-  action: string,
-  result: Record<string, unknown>,
-) {
-  if (typeof result.responseHash === "string") return result.responseHash
-  if (
-    action === "questions.submitSingleChoice" &&
-    typeof result.answer === "string"
-  ) {
-    return questionResponseHash({ choice: result.answer })
-  }
-  return undefined
-}
-
 function actionFields(values: Record<string, string>) {
   return Object.entries(values).map(([name, value]) => ({ name, value }))
 }
 
-function finalizedStatus(result: Awaited<ReturnType<PathMXTrustedActor["act"]>>) {
+function finalizedStatus(
+  result: Awaited<ReturnType<PathMXTrustedActor["act"]>>,
+) {
   if (result.type !== "admitted") {
     throw new Error(`Coach Action was rejected: ${result.message}`)
   }
@@ -77,28 +58,40 @@ export function createLearningCoordinator(options: {
     type: "pathmx/server-module",
     name: "pathmx/learning-coordinator",
     actor: { id: "coach", persona: { sourceId: "coach.persona" } },
+    async start(context) {
+      playSession = playSessionFor(
+        context.actor,
+        playSession,
+        ONBOARDING_SOURCE_ID,
+      )
+      await playSession
+    },
     async actionFinalized(context, event) {
+      const sourceId = event.actionRun.started.source.sourceId
       if (
         event.actionRun.started.actor.id === "coach" ||
-        !LEARNER_ACTIONS.has(event.actionRun.started.action.action) ||
-        event.actionRun.finished.outcome.sourceChange.changedSources.length === 0
+        event.actionRun.started.action.action !== ONBOARDING_ACTION ||
+        sourceId !== ONBOARDING_SOURCE_ID ||
+        event.actionRun.finished.outcome.sourceChange.changedSources.length ===
+          0
       ) {
         return
       }
       const result = resultRecord(event)
       const questionId = result?.questionId
-      if (!result || typeof questionId !== "string") {
+      const responseHash = result?.responseHash
+      if (
+        !result ||
+        questionId !== ONBOARDING_QUESTION_ID ||
+        typeof responseHash !== "string"
+      ) {
         return
       }
-      const responseHash = await eventResponseHash(
-        event.actionRun.started.action.action,
-        result,
-      )
-      if (!responseHash) return
       const causeRunId = event.actionRun.started.run.id
-      const sourceId = event.actionRun.started.source.sourceId
       const receiptId = receiptIdForRun(causeRunId)
-      playSession ??= playSessionFor(context.actor, playSession, sourceId)
+      if (!playSession) {
+        throw new Error("Coach Play Session was not initialized.")
+      }
       const session = await playSession
       const base = {
         causeRunId,

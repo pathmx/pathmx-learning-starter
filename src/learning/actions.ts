@@ -3,19 +3,16 @@ import {
   type PathMXActionInput,
 } from "@fellowhumans/pathmx/plugin"
 import {
-  agentResponseBlocks,
-  completedReceiptBlock,
+  completedTurnBlocks,
   currentQuestionResponseHash,
   failedReceiptBlock,
   findPendingTurn,
   findTurnReceipt,
   pendingReceiptBlock,
+  readQuestionResponse,
 } from "./source-format"
-import {
-  findPathProposalBlock,
-  formatPathProposalBlock,
-} from "./path-instantiation"
-import { parseLearningTurnProposal } from "./proposals"
+import { parseLearningTurnDraft } from "./proposals"
+import { resolveLearningTurnDraft } from "./starting-path-template"
 
 type BeginTurnInput = {
   causeRunId: string
@@ -25,7 +22,7 @@ type BeginTurnInput = {
 }
 
 type ApplyTurnInput = BeginTurnInput & {
-  proposal: ReturnType<typeof parseLearningTurnProposal>
+  proposal: ReturnType<typeof parseLearningTurnDraft>
 }
 
 type FailTurnInput = BeginTurnInput & {
@@ -193,14 +190,18 @@ export const learningApplyTurnAction = defineAction<
       ])
       if (!values) return invalid("Apply turn fields are invalid.")
       try {
-        const proposal = parseLearningTurnProposal(JSON.parse(values.proposal!))
+        const proposal = parseLearningTurnDraft(JSON.parse(values.proposal!))
         const value = { ...baseTurnFields(values), proposal }
         return {
           type: "valid",
           value,
           journalValue: {
             ...baseTurnFields(values),
-            blockCount: proposal.blocks.length,
+            blockCount:
+              proposal.type === "learning-turn" ? proposal.blocks.length : 1,
+            ...(proposal.type === "learning-template"
+              ? { template: proposal.template }
+              : {}),
           },
         }
       } catch (error) {
@@ -235,41 +236,27 @@ export const learningApplyTurnAction = defineAction<
       )
     }
 
-    context.plan.replaceBlock(
-      receipt,
-      completedReceiptBlock({
-        receipt,
-        receiptId: input.receiptId,
-        causeRunId: input.causeRunId,
-        expectedResponseHash: input.expectedResponseHash,
-      }),
-    )
-    context.plan.insertBlocksAfter(
-      receipt,
-      agentResponseBlocks({
-        receiptId: input.receiptId,
-        causeRunId: input.causeRunId,
-        proposal: input.proposal,
-      }),
-    )
-
-    const proposal = formatPathProposalBlock({
-      source,
-      questionId: input.questionId,
-      causeRunId: input.causeRunId,
-      receiptId: input.receiptId,
-      responseHash: input.expectedResponseHash,
-    })
-    if (proposal) {
-      const existing = findPathProposalBlock(source)
-      if (!existing) {
-        return context.plan.conflict(
-          "path-proposal-missing",
-          "The maintained onboarding proposal Block is missing.",
-        )
-      }
-      context.plan.replaceBlock(existing, proposal)
+    const response = readQuestionResponse(source, input.questionId)
+    if (!response) {
+      return context.plan.conflict(
+        "missing-response",
+        "The current learner Response is unavailable.",
+      )
     }
+    const proposal = resolveLearningTurnDraft(input.proposal, response)
+
+    const completed = completedTurnBlocks({
+      receipt,
+      receiptId: input.receiptId,
+      causeRunId: input.causeRunId,
+      expectedResponseHash: input.expectedResponseHash,
+      proposal,
+    })
+    context.plan.replaceBlock(receipt, completed.primary)
+    if (completed.additional.length > 0) {
+      context.plan.insertBlocksAfter(receipt, completed.additional)
+    }
+
     return context.plan.complete({
       receiptId: input.receiptId,
       status: "complete",

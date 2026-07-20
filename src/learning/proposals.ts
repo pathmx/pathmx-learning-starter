@@ -9,6 +9,13 @@ export type LearningTurnProposal = {
   blocks: LearningBlockProposal[]
 }
 
+export type LearningTurnTemplate = {
+  type: "learning-template"
+  template: "starting-path"
+}
+
+export type LearningTurnDraft = LearningTurnProposal | LearningTurnTemplate
+
 const LOCAL_ID = /^[a-z][a-z0-9-]{0,79}$/
 const MAX_BLOCKS = 3
 const MAX_TITLE = 120
@@ -69,6 +76,21 @@ export function parseLearningTurnProposal(
     throw new Error(`Learning proposal exceeds ${MAX_TOTAL} UTF-8 bytes.`)
   }
   return { type: "learning-turn", blocks }
+}
+
+export function parseLearningTurnDraft(value: unknown): LearningTurnDraft {
+  if (isRecord(value) && value.type === "learning-template") {
+    if (
+      value.template !== "starting-path" ||
+      Object.keys(value).some((key) => key !== "type" && key !== "template")
+    ) {
+      throw new Error(
+        "Learning template must select the starting-path template.",
+      )
+    }
+    return { type: "learning-template", template: "starting-path" }
+  }
+  return parseLearningTurnProposal(value)
 }
 
 export const learningTurnProposalJsonSchema = {

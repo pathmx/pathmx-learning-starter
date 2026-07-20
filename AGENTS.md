@@ -1,47 +1,29 @@
-# PathMX Learning Workspace
+# PathMX Learning Starter
 
-This repository is the learner's durable record. Keep goals, paths, lessons,
-progress, and evidence in Sources rather than only in chat.
+This repository is a small Player-native learning application. The maintained
+slice is intentionally limited to onboarding: a learner submits one durable
+goal Response and Coach adds a durable proposal through PathMX Actions.
 
 ## Workflow
 
-- Use `/path` to start or resume one personal learning path.
 - Use `/pathmx` when authoring or verifying PathMX Sources.
-- Read the root Path, learner profile, activity log, and current path before
-  continuing a learning session.
-- Build only the first or next lesson. Advance after reviewed evidence and a
-  recorded synthesis.
-- Keep learner context confirmed, useful, and minimal.
-
-## Workspace shape
-
-```text
-paths/
-├── index.path.md
-├── learner.profile.md
-├── learning.activity.md
-├── theme.css
-├── assets/
-│   └── learning.components.md
-└── <path-name>/
-    ├── index.path.md
-    ├── path.outcome.md
-    ├── lessons/<lesson-name>/
-    │   ├── index.lesson.md
-    │   └── lesson.assessment.md
-    └── references/
-        └── index.references.md
-```
-
-The `welcome/` path is the maintained example.
+- Start at `paths/index.path.md` and follow `paths/new.path.md` for the current
+  onboarding flow.
+- Keep durable learner and coach state in Sources, not only in process memory or
+  an agent transcript.
+- Add product surface incrementally only after the onboarding flow works through
+  the real Server, Actor, Action, Build, Runtime, and Player path.
 
 ## Guardrails
 
-- Do not edit synced files under `.agents/skills/`.
+- Do not edit synced files under `.agents/skills/pathmx/`.
 - Do not commit credentials, private links, or sensitive learner data.
-- Use relative Source and asset links.
-- Do not invent PathMX syntax.
-- Use only the built-in question mappings documented by `/pathmx`.
-- Do not author general actions or spaceholders yet.
-- Build into `.pathmx-check`, never a live `.pathmx` directory.
-- Review warnings and use the Player for presentation or interaction changes.
+- Use the normal PathMX plugin and trusted Actor interfaces from the pinned npm
+  package. Do not write Source files directly from the coordinator or driver.
+- Keep Action code on parsed PathMX Sources and `context.plan`; do not re-parse
+  Markdown or frontmatter inside Actions.
+- Give the agent only explicit bounded read-only Source context.
+- Build into a disposable output directory when testing. Never treat `.pathmx`
+  as Source.
+- Treat live Action submissions as real Source writes; use `bun run demo` for
+  disposable visual testing.

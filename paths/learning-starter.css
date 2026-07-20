@@ -1,0 +1,152 @@
+@scope (.pmx-document[data-pathmx-source="new.path"]) {
+  :scope {
+    --learning-field-surface: color-mix(
+      in oklch,
+      var(--pmx-color-surface) 86%,
+      var(--pmx-color-bg)
+    );
+    --learning-field-border: color-mix(
+      in oklch,
+      var(--pmx-color-border) 82%,
+      transparent
+    );
+  }
+
+  :where(.pmx-block:has([data-pathmx-question-controls]))
+    > :where(h1, [data-pathmx-question-controls]) {
+    inline-size: min(100%, 46rem);
+    margin-inline: auto;
+  }
+
+  :where(.pmx-block:has([data-pathmx-question-controls])) > h1 {
+    max-inline-size: 18ch;
+    text-wrap: balance;
+  }
+
+  :where([data-pathmx-question-controls]) {
+    min-inline-size: 0;
+    margin-block-start: clamp(1rem, 3dvh, 2rem);
+    padding: 0;
+    border: 0;
+  }
+
+  :where([data-pathmx-question-controls]) > p {
+    max-inline-size: 42rem;
+    color: var(--pmx-color-muted);
+    text-wrap: pretty;
+  }
+
+  :where([data-pathmx-question-controls]) > blockquote {
+    margin: clamp(1.5rem, 4dvh, 2.5rem) 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  :where([data-pathmx-question-controls]) > blockquote > p {
+    margin: 0;
+    padding-block: clamp(0.8rem, 2dvh, 1.15rem);
+  }
+
+  :where([data-pathmx-question-controls]) > blockquote > p + p {
+    border-block-start: 1px solid
+      color-mix(in oklch, var(--pmx-color-border) 58%, transparent);
+  }
+
+  :where([data-pathmx-question-controls])
+    > blockquote
+    > p
+    > strong:first-child {
+    display: block;
+    color: var(--pmx-color-fg);
+    font-size: 0.92em;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  :where([data-pathmx-question-controls])
+    > blockquote
+    > p
+    > strong:first-child
+    + br {
+    display: none;
+  }
+
+  :where(.pmx-response-field) {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: none;
+    margin: 0.55rem 0 0;
+  }
+
+  :where(.pmx-response-field) > input[type="text"] {
+    box-sizing: border-box;
+    field-sizing: fixed;
+    inline-size: 100%;
+    min-inline-size: 0;
+    max-inline-size: none;
+    min-block-size: 3.25rem;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid var(--learning-field-border);
+    border-radius: max(0.55rem, var(--pmx-radius));
+    background: var(--learning-field-surface);
+    color: var(--pmx-color-fg);
+    font: inherit;
+    font-size: max(1rem, 1em);
+    line-height: 1.35;
+    transition:
+      border-color 140ms ease-out,
+      background-color 140ms ease-out,
+      box-shadow 140ms ease-out;
+  }
+
+  :where(.pmx-response-field) > input[type="text"]::placeholder {
+    color: color-mix(in oklch, var(--pmx-color-muted) 82%, transparent);
+    opacity: 1;
+  }
+
+  :where(.pmx-response-field) > input[type="text"]:focus {
+    border-color: var(--pmx-color-focus);
+    background: var(--pmx-color-surface);
+    box-shadow: 0 0 0 0.2rem
+      color-mix(in oklch, var(--pmx-color-focus) 18%, transparent);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where(.pmx-response-field) > input[type="text"]:hover:not(:focus) {
+      border-color: color-mix(
+        in oklch,
+        var(--pmx-color-focus) 58%,
+        var(--pmx-color-border)
+      );
+    }
+  }
+}
+
+@container pathmx-runtime (max-width: 42rem) {
+  @scope (.pmx-document[data-pathmx-source="new.path"]) {
+    :where(.pmx-block:has([data-pathmx-question-controls])) > h1 {
+      max-inline-size: 14ch;
+    }
+
+    :where([data-pathmx-question-controls]) {
+      margin-block-start: 0.75rem;
+    }
+
+    :where([data-pathmx-question-controls]) > blockquote {
+      margin-block-start: 1rem;
+    }
+
+    :where([data-pathmx-question-controls]) > blockquote > p {
+      padding-block: 0.72rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @scope (.pmx-document[data-pathmx-source="new.path"]) {
+    :where(.pmx-response-field) > input[type="text"] {
+      transition-duration: 1ms;
+    }
+  }
+}

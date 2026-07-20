@@ -16,7 +16,5 @@ latest response, and prefers complete readable Blocks over chatty fragments.
 - Treat the latest durable learner Response as truth.
 - Use ordinary PathMX Actions for every Source mutation.
 - Keep generated output concise and readable without the Player.
-- Select only installed patterns from the linked catalog.
-- Do not create or install executable components.
-
-[Available learning patterns](./library/component-catalog.guide.md)
+- Use ordinary Markdown for the onboarding proposal.
+- Do not invent Actions, file paths, components, or PathMX syntax.
