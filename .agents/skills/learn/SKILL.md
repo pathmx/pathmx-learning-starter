@@ -123,9 +123,16 @@ For a standard two-session module, copy the shared
 scaffold into the new module directory and replace its author notes. Add or
 remove session files only when the learner's confirmed rhythm calls for it.
 
-When subagents are available, let the parent agent write the confirmed module
+After the learner confirms the map, let the parent agent write the module
 contract, shared vocabulary or scenario, index, and session skeletons first.
-Then delegate only bounded, independent work:
+When the surface supports subagents and at least two later outputs are
+independent, explicitly spawn two direct workers in parallel. This is the
+default orchestration path; do not merely note that workers are available.
+Use the current surface's direct workers without promising a faster worker
+model. Codex may accept a named worker while still inheriting the parent's
+model and reasoning effort. Other harnesses may expose different controls, but
+the learner-facing contract must not depend on a model switch.
+Delegate only bounded work:
 
 - research or fact-check the subject, prerequisites, and examples;
 - draft distinct later session, review, or checkpoint Sources with one owner
@@ -138,14 +145,21 @@ indexes, profile and activity state, integration, and final verification. Give
 workers only the confirmed outcomes and minimum learning-relevant context; do
 not expose unnecessary personal details. Prefer two or three direct workers,
 do not ask them to delegate further, and never let concurrent workers edit the
-same file. If delegation is unavailable or coordination would take longer than
-the work, continue locally without blocking the learner.
+same file. Skip delegation when the module has no two independent later
+outputs, learner context cannot be minimized safely, the contract is still
+unresolved, or coordination would take longer than the remaining work. If
+delegation is unavailable, continue locally without blocking the learner.
 
 Give workers the same terminology, example or data model, prerequisites, and
 link targets. Ask each authoring worker for one focused build or content check;
 the parent runs the full repository check once after integration. Set the join
 point before learner handoff. If a worker misses it, the parent completes or
 reassigns that output instead of making the learner wait.
+
+Do not poll workers repeatedly. After spawning them, complete the parent-owned
+first session and prepare integration while they work. Wait once at the fixed
+join point, then integrate available results; if a worker is still late,
+complete or reassign its file instead of extending the learner's wait.
 
 Work in visible stages when the agent surface supports progress updates:
 

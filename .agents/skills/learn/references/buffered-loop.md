@@ -35,10 +35,17 @@ flowchart TD
 
 ## Fast orchestration lane
 
-Use subagents only when the active surface supports them and the work has
-independent outputs. The parent agent stays in the learner conversation and
-owns every durable state transition. Workers return concise drafts or findings
-to the parent; they do not teach, place, or hand off directly to the learner.
+When the active surface supports subagents and a confirmed module has at least
+two independent later outputs, explicitly spawn two direct workers in parallel.
+Do not leave this as an implicit option. The parent agent stays in the learner
+conversation and owns every durable state transition. Workers return concise
+drafts or findings to the parent; they do not teach, place, or hand off directly
+to the learner.
+
+Use the current surface's direct workers without promising a faster worker
+model. Codex may accept a named worker while still inheriting the parent's
+model and reasoning effort. Other harnesses may expose different controls, but
+the learner-facing contract must not depend on a model switch.
 
 | Phase | Parent agent | Safe worker lane |
 | --- | --- | --- |
@@ -55,6 +62,11 @@ files. Do not allow nested delegation, concurrent edits to shared indexes,
 profile or activity files, or unreviewed worker output in learner-facing
 Sources.
 
+Skip the worker lane when the module has no two independent later outputs,
+learner context cannot be minimized safely, the contract is unresolved, or
+coordination would take longer than the remaining work. Continue in the parent
+without making the learner wait.
+
 Share confirmed outcomes, module dependencies, audience level, shared
 terminology, example or data model, link targets, and the exact file boundary.
 Ask workers for focused checks only; the parent runs one full check after
@@ -66,6 +78,9 @@ costs more to coordinate than the remaining task, the parent completes or
 reassigns that output instead of waiting. If the learner changes the goal, the
 parent redirects or stops stale work. If workers are unavailable, continue in
 the parent without mentioning an internal tooling limitation.
+
+Do not poll workers repeatedly. Complete the first session and integration
+preparation after spawning them, then wait once at the fixed join point.
 
 ## One module
 

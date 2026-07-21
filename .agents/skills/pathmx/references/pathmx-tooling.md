@@ -44,6 +44,11 @@ Refresh managed official skills inside a recognizable PathMX Space:
 pathmx init --skills
 ```
 
+Skill refresh is an in-place, complete replacement of the managed skill tree.
+Do not create or switch to a temporary Git branch for it. Preserve root
+`AGENTS.md` and other project instructions; replace stale or bespoke files
+inside the managed skill directories with the current official set.
+
 Do not update an existing project's dependency or config merely to make new
 syntax work. Use its lockfile unless the user asked for an upgrade.
 

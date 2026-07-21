@@ -30,5 +30,8 @@ The first ready lesson is [Using the PathMX Player](./paths/getting-started/play
 - `paths/learning.activity.md` is the durable progress log.
 - `paths/getting-started/` contains the optional Player orientation.
 - `.agents/skills/` tells agents how to design learning and author PathMX.
+- `.agents/skills/` also defines the bounded worker pattern agents may use for
+  independent later-module files without moving learner state out of the
+  parent conversation.
 
 Keep this repository private unless you deliberately choose to share it.

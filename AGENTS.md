@@ -49,6 +49,11 @@ the learner and to the next agent by writing durable state into the repository.
   checkpoint until the learner explicitly confirms it.
 - Do not make the learner wait for an agent between ordinary lesson Blocks.
   Put hints, rationale, examples, and smaller or stretch variants in Player.
+- When a confirmed module has at least two independent later outputs, the
+  parent may use bounded direct workers for later-session, review, checkpoint,
+  research, or fact-checking work. The parent still owns the first session,
+  learner state, integration, verification, and handoff. Do not promise that a
+  named worker changes models or makes the module faster.
 - Adapt at session or module boundaries. Gate only real dependencies.
 - Track milestones as `planned`, `ready`, `in progress`, `demonstrated`, or
   `paused`.

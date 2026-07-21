@@ -5,11 +5,11 @@
     "": {
       "name": "my-pathmx-learning-space",
       "dependencies": {
-        "@fellowhumans/pathmx": "0.1.24",
+        "@fellowhumans/pathmx": "0.1.25",
       },
     },
   },
   "packages": {
-    "@fellowhumans/pathmx": ["@fellowhumans/pathmx@0.1.24", "", { "bin": { "pathmx": "dist/pathmx.js", "pmx": "dist/pathmx.js" } }, "sha512-0DHNQWtgDvzav4+V1IE7R3Qh4YHrPene+A/YO9zlOxWHv0hpNoqQ1qBFg7rriRiuUe8jTaup59sg8ZThLCbiEA=="],
+    "@fellowhumans/pathmx": ["@fellowhumans/pathmx@0.1.25", "", { "bin": { "pathmx": "dist/pathmx.js", "pmx": "dist/pathmx.js" } }, "sha512-gmxzizQWL9re8hcpVzgGAoPcMERV+WUIT5KFWUVsAPsWtd0tt0El/aCkSIk82CbN4/RbArHiN1BkDEg70NdFkg=="],
   }
 }
