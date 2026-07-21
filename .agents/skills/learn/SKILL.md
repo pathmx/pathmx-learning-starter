@@ -1,9 +1,9 @@
 ---
-name: path
-description: Start, plan, teach, and resume personal learning in a PathMX learning space. Use automatically when one learner asks to learn, study, practice, build a curriculum, continue a learning path, review progress, or turn a goal into guided lessons, including when a new personal learning repository must be created.
+name: learn
+description: Start, plan, guide, and resume personal learning in a PathMX learning space. Use automatically when one learner asks to learn, study, practice, build a personal curriculum, continue a learning path, review progress, or turn a goal into guided lessons, including when a new personal learning repository must be created. Use teach instead when authoring one path for multiple learners.
 ---
 
-# Personal Learning Path
+# Learn with PathMX
 
 Build a durable personal learning space for one learner. Use the installed
 `pathmx` skill for PathMX syntax, Player routes, and verification.
@@ -73,7 +73,9 @@ Turn onboarding evidence into:
 - **later modules:** provisional titles and outcomes.
 
 Write the proposed map into the learning repository before showing it to the
-learner. Use the bundled `assets/path/index.path.md` scaffold so every one of
+learner. Use the shared
+[`library/templates/learn/path/index.path.md`](../pathmx/library/templates/learn/path/index.path.md)
+scaffold so every one of
 the 3–7 milestones has one visible `planned`, `ready`, `in progress`,
 `demonstrated`, or `paused` status plus an evidence target. Link the proposed
 foreground Path from the home Source. This first useful artifact should be
@@ -99,6 +101,12 @@ module. A request to show a map is not confirmation.
 Do not fully author the entire future curriculum. Fully author the current
 module and keep later modules easy to change.
 
+After the persisted map is visible, use background workers when the agent
+surface supports them to gather low-risk subject research, prerequisite risks,
+or candidate examples while the learner reviews the proposal. Do not draft
+session Sources before confirmation. Keep the parent agent available for the
+learner's reply, and stop or redirect work when the goal changes.
+
 ## Build a learning runway
 
 Prepare all sessions in the current module before asking the learner to begin.
@@ -110,17 +118,43 @@ Before calling the module ready, check every session for a worked example, an
 optional hint or smaller attempt, and an immediate rationale, self-check, or
 rubric. Keep focused review and an optional stretch task ready in the module.
 
-For a standard two-session module, copy the bundled `assets/module/` scaffold
-into the new module directory and replace its author notes. Add or remove
-session files only when the learner's confirmed rhythm calls for it.
+For a standard two-session module, copy the shared
+[`library/templates/learn/module/`](../pathmx/library/templates/learn/module/)
+scaffold into the new module directory and replace its author notes. Add or
+remove session files only when the learner's confirmed rhythm calls for it.
+
+When subagents are available, let the parent agent write the confirmed module
+contract, shared vocabulary or scenario, index, and session skeletons first.
+Then delegate only bounded, independent work:
+
+- research or fact-check the subject, prerequisites, and examples;
+- draft distinct later session, review, or checkpoint Sources with one owner
+  per file;
+- review completed drafts for learning alignment, accessibility, and PathMX
+  correctness.
+
+The parent agent owns the learner conversation, the first session, shared
+indexes, profile and activity state, integration, and final verification. Give
+workers only the confirmed outcomes and minimum learning-relevant context; do
+not expose unnecessary personal details. Prefer two or three direct workers,
+do not ask them to delegate further, and never let concurrent workers edit the
+same file. If delegation is unavailable or coordination would take longer than
+the work, continue locally without blocking the learner.
+
+Give workers the same terminology, example or data model, prerequisites, and
+link targets. Ask each authoring worker for one focused build or content check;
+the parent runs the full repository check once after integration. Set the join
+point before learner handoff. If a worker misses it, the parent completes or
+reassigns that output instead of making the learner wait.
 
 Work in visible stages when the agent surface supports progress updates:
 
-1. Create the module index and session skeletons, then report that the runway
-   exists.
-2. Fill the first session, then report the concrete capability now ready.
-3. Fill the remaining sessions, review, and checkpoint, then report that the
-   uninterrupted module is ready for verification.
+1. Create the module index, contract, and session skeletons; start any bounded
+   workers; then report that the runway exists.
+2. Fill the first session while independent later Sources are prepared, then
+   report the concrete capability now ready.
+3. Integrate and review every session, review, and checkpoint, then report that
+   the uninterrupted module is ready for verification.
 4. Run one targeted build or route check, then one full check before handoff.
 
 Keep these updates factual and brief; they are learner-visible progress, not
@@ -172,6 +206,13 @@ At the module checkpoint:
    review.
 4. Update current Point A and prepare the next module.
 5. Record a short synthesis and the reason for placement.
+
+After checkpoint evidence is durable, a read-only worker may summarize the
+evidence against the existing rubric while another researches the likely next
+module. The parent agent must make the placement decision, write Point A and
+activity changes, prepare remediation or the next module, and explain the
+decision to the learner. Never wait for optional worker output before
+acknowledging the learner or answering a direct question.
 
 Gate progression only when a later capability genuinely depends on a missed
 core idea. After repeated difficulty, provide a smaller remediation module or
@@ -235,9 +276,11 @@ paths/
 - A module index links its fully prepared sessions and checkpoint.
 - Completed Sources remain history. Do not silently rewrite past evidence.
 
-Read the [buffered loop](./references/buffered-loop.md) and the compact
-[worked example](./references/worked-example.md) when planning or changing a
-path.
+Read the [buffered loop](./references/buffered-loop.md) when planning or
+changing a path. Use the shared PathMX [library](../pathmx/library/index.md) to
+choose verified patterns, templates, components, and examples. The compact
+[SQL example](../pathmx/library/examples/learn-sql-foundations/paths/sql-foundations/index.path.md)
+shows one complete personal module.
 
 ## Learning rules
 

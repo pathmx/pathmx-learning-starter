@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "pathmxCompatibility": {
-    "baseline": "0.1.21",
+    "baseline": "0.1.24",
     "updatePolicy": "latest-after-verification"
   },
   "scripts": {
@@ -15,6 +15,6 @@
     "check:candidate": "bun run scripts/check.ts --candidate"
   },
   "dependencies": {
-    "@fellowhumans/pathmx": "0.1.21"
+    "@fellowhumans/pathmx": "0.1.24"
   }
 }

@@ -7,7 +7,7 @@ the learner and to the next agent by writing durable state into the repository.
 
 1. Read `paths/index.path.md`, `paths/learner.profile.md`, and
    `paths/learning.activity.md`.
-2. Read `.agents/skills/path/SKILL.md` for learning design and use it
+2. Read `.agents/skills/learn/SKILL.md` for learning design and use it
    automatically for learning-path work.
 3. Read `.agents/skills/pathmx/SKILL.md` before writing or changing PathMX.
 4. Run `bun install --frozen-lockfile` when dependencies are missing.

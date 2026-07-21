@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn with PathMX"
+  short_description: "Build buffered adaptive learning paths"
+  default_prompt: "Use $learn to help me start or continue learning in my personal PathMX space."

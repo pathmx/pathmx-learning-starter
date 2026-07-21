@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teach with PathMX"
+  short_description: "Create PathMX paths for many learners"
+  default_prompt: "Use $teach to create a shareable PathMX learning path for my audience."
