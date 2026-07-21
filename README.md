@@ -4,8 +4,9 @@ This repository is a personal learning space: it holds learning paths, lesson
 material, progress, work, and feedback in files that both you and an agent can
 read.
 
-The exact verified PathMX fallback is recorded as `pathmxCompatibility` in
-`package.json`. Your agent may update to latest only through the repository's
+The project dependency follows the latest PathMX Labs release. `bun.lock` and
+the exact `pathmxCompatibility` baseline record the version most recently
+verified for this space; your agent refreshes them only through the
 build-and-Player verification loop.
 
 ## Begin

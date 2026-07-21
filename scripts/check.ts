@@ -63,10 +63,26 @@ async function checkLearningContract() {
 try {
   const packageJson = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"))
   const baseline = packageJson.pathmxCompatibility?.baseline
-  const installed = packageJson.dependencies?.["@fellowhumans/pathmx"]
+  const dependencySpec = packageJson.dependencies?.["@fellowhumans/pathmx"]
+  const installedPackage = JSON.parse(
+    await readFile(
+      path.join(root, "node_modules/@fellowhumans/pathmx/package.json"),
+      "utf8",
+    ),
+  )
+  const installed = installedPackage.version
   const candidate = Bun.argv.includes("--candidate")
-  if (!/^\d+\.\d+\.\d+$/.test(baseline ?? "") || !/^\d+\.\d+\.\d+$/.test(installed ?? "")) {
-    throw new Error("PathMX compatibility versions must be exact")
+  const exactVersion = /^\d+\.\d+\.\d+$/
+  if (!exactVersion.test(baseline ?? "") || !exactVersion.test(installed ?? "")) {
+    throw new Error("PathMX baseline and installed versions must be exact")
+  }
+  if (dependencySpec !== "latest" && !exactVersion.test(dependencySpec ?? "")) {
+    throw new Error('PathMX dependency must be "latest" or an exact version')
+  }
+  if (dependencySpec !== "latest" && dependencySpec !== installed) {
+    throw new Error(
+      `PathMX dependency ${dependencySpec} resolved to unexpected version ${installed}`,
+    )
   }
   if (baseline !== installed && !candidate) {
     throw new Error(

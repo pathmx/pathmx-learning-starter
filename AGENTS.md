@@ -16,17 +16,18 @@ the learner and to the next agent by writing durable state into the repository.
 
 ## Version safety
 
-- The exact dependency and `bun.lock` govern which syntax is valid here. A
-  newer native command does not change that contract.
+- The installed dependency resolved by `bun.lock` governs which syntax is
+  valid here. The `package.json` dependency follows `latest`, but a newer
+  native command or registry release does not change an existing lockfile.
 - Before learner work, check for a newer project release. Start from a verified
-  commit, run `bun add --exact @fellowhumans/pathmx@latest`, then run
-  `bun run check:candidate` and smoke-test Player routes, questions,
-  annotations, and components.
+  commit, run `bun update @fellowhumans/pathmx`, then run `bun run
+  check:candidate` and smoke-test Player routes, questions, annotations, and
+  components.
 - After a passing candidate, set `pathmxCompatibility.baseline` to the exact
-  installed dependency and run `bun run check` before committing. Otherwise
-  restore only `package.json` and `bun.lock`, reinstall with
-  `--frozen-lockfile`, and report the incompatibility. Do not rewrite learner
-  data to force an update.
+  installed package version and run `bun run check` before committing the
+  refreshed lockfile. Otherwise restore only `package.json` and `bun.lock`,
+  reinstall with `--frozen-lockfile`, and report the incompatibility. Do not
+  rewrite learner data to force an update.
 - Inspect the updated command help before using new syntax.
 - `bun run check` includes a private compatibility fixture for questions,
   annotations, and the bundled component. Keep it out of the learner's path
