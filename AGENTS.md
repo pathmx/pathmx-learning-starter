@@ -19,6 +19,9 @@ the learner and to the next agent by writing durable state into the repository.
 - The installed dependency resolved by `bun.lock` governs which syntax is
   valid here. The `package.json` dependency follows `latest`, but a newer
   native command or registry release does not change an existing lockfile.
+- When a managed skill refers to the exact project dependency, compare the
+  exact installed package version from the lockfile. Do not replace the
+  `latest` dependency declaration merely to record a verified baseline.
 - Before learner work, check for a newer project release. Start from a verified
   commit, run `bun update @fellowhumans/pathmx`, then run `bun run
   check:candidate` and smoke-test Player routes, questions, annotations, and
