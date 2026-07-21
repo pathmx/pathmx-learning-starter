@@ -33,6 +33,40 @@ flowchart TD
   Review --> Checkpoint
 ```
 
+## Fast orchestration lane
+
+Use subagents only when the active surface supports them and the work has
+independent outputs. The parent agent stays in the learner conversation and
+owns every durable state transition. Workers return concise drafts or findings
+to the parent; they do not teach, place, or hand off directly to the learner.
+
+| Phase | Parent agent | Safe worker lane |
+| --- | --- | --- |
+| Map proposal | Gather evidence, write and show the persisted map, answer the learner | After the map is visible, research vocabulary, prerequisite risks, or examples that survive likely map edits |
+| Await confirmation | Remain responsive and revise the proposal | Continue only low-risk research; do not draft session Sources |
+| Confirmed runway | Write the module contract, shared index, skeletons, and first session; integrate and verify | Fact-check or draft distinct later session, review, or checkpoint files |
+| Learner in module | Respond to questions and preserve ready material | Investigate a bounded factual question or annotation without rewriting the module speculatively |
+| Checkpoint | Make placement, remediation, and Point A decisions; write shared state | Independently summarize durable evidence against the existing rubric or research the likely next module |
+
+Use the smallest useful team, normally the parent plus two or three direct
+workers. Give every worker one output, one owner, and a clear return shape.
+Prefer read-only research and reviews; when workers author, assign separate
+files. Do not allow nested delegation, concurrent edits to shared indexes,
+profile or activity files, or unreviewed worker output in learner-facing
+Sources.
+
+Share confirmed outcomes, module dependencies, audience level, shared
+terminology, example or data model, link targets, and the exact file boundary.
+Ask workers for focused checks only; the parent runs one full check after
+integration. Omit learner identity and any profile detail that the worker does
+not need.
+
+Set a join point before learner handoff. If a worker misses it, conflicts, or
+costs more to coordinate than the remaining task, the parent completes or
+reassigns that output instead of waiting. If the learner changes the goal, the
+parent redirects or stops stale work. If workers are unavailable, continue in
+the parent without mentioning an internal tooling limitation.
+
 ## One module
 
 A module has one coherent capability destination. Prepare all its sessions

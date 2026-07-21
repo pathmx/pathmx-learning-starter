@@ -1,6 +1,6 @@
 ---
 name: pathmx
-description: Author, revise, review, play, and verify PathMX sources. Use automatically for PathMX Markdown, Sources, Blocks, Beats, links, directives, questions, annotations, Literate Components, Play pacing, Player routes, media, code, math, styling, configuration, CLI setup, builds, or browser review in any PathMX repository.
+description: Author, revise, review, play, and verify PathMX sources. Use automatically for PathMX Markdown, Sources, Blocks, Beats, links, directives, questions, annotations, Literate Components, Play pacing, Player routes, icons, media, code, math, styling, configuration, CLI setup, builds, or browser review in any PathMX repository.
 ---
 
 # PathMX
@@ -75,6 +75,7 @@ Read only what the task needs:
 - [Questions and responses](./references/pathmx-questions.md)
 - [Annotations](./references/pathmx-annotations.md)
 - [Literate Components](./references/pathmx-literate-components.md)
+- [Lucide icons](./references/pathmx-icons.md)
 - [Code](./references/pathmx-code.md)
 - [Math](./references/pathmx-math.md)
 - [Media](./references/pathmx-media.md)
@@ -82,6 +83,7 @@ Read only what the task needs:
 - [Configuration](./references/pathmx-config.md)
 - [Tooling, setup, and verification](./references/pathmx-tooling.md)
 - [Small repository example](./references/pathmx-repo-example/pathmx-repository.md)
+- [Shared pattern, template, component, and example library](./library/index.md)
 
 ## Boundaries
 
