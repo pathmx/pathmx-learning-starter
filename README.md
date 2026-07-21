@@ -1,68 +1,34 @@
-# PathMX Learning Starter
+# My PathMX learning space
 
-A small Player-native onboarding loop built on the normal PathMX Server,
-Actor, Action, Build, Runtime, and Player architecture.
+This repository is a personal learning space: it holds learning paths, lesson
+material, progress, work, and feedback in files that both you and an agent can
+read.
 
-The maintained slice does one thing: a learner submits a multi-field learning
-goal, Coach records a pending turn, and a validated proposal becomes ordinary
-readable Blocks in the same Source. Source remains truth across reloads.
+The exact verified PathMX fallback is recorded as `pathmxCompatibility` in
+`package.json`. Your agent may update to latest only through the repository's
+build-and-Player verification loop.
 
-## Run
+## Begin
 
-Install the exact PathMX package and start the Player:
+Open this folder in Codex, Claude Code, or another coding agent and say what you
+want to learn. The repository instructions will guide the agent through a short
+onboarding conversation and the first learning module.
 
-> `package.json` currently targets the pending `0.1.19` release. Publish that
-> package and generate `bun.lock` before treating clean-clone installation as
-> complete.
-
-```sh
-bun install
-bun run dev
-```
-
-The default deterministic Coach requires no agent sign-in. To use an installed,
-authenticated Codex CLI:
+To open the Player yourself:
 
 ```sh
-PATHMX_AGENT_DRIVER=codex bun run dev
+bun install --frozen-lockfile
+bun run play:open
 ```
 
-For visual testing without changing checked-in Sources:
+The first ready lesson is [Using the PathMX Player](./paths/getting-started/player.lesson.md).
 
-```sh
-bun run demo
-```
+## What lives here
 
-Open the printed `/new.path` route and submit a goal. Stop the demo with Ctrl-C
-to remove its temporary Sources.
+- `paths/index.path.md` is the home page and path map.
+- `paths/learner.profile.md` holds only preferences and goals you confirm.
+- `paths/learning.activity.md` is the durable progress log.
+- `paths/getting-started/` contains the optional Player orientation.
+- `.agents/skills/` tells agents how to design learning and author PathMX.
 
-## Verify
-
-```sh
-bun run check
-bun run smoke:fake
-bun run smoke:codex
-```
-
-The fake integration test and live Codex smoke use disposable copies of
-`paths/`. Both cross the same HTTP, Actor, Action, Source mutation, incremental
-Build, and reload path used by the Player.
-
-## Shape
-
-```text
-.agents/skills/pathmx/       # PathMX authoring help
-paths/
-├── index.path.md            # learner entry
-├── new.path.md              # onboarding Question and resulting proposal
-└── coach.persona.md         # explicit Coach context
-src/
-├── server.ts                # normal PathMX server composition
-└── learning/                # Starter-owned Actions, coordinator, and drivers
-```
-
-The coordinator and drivers never write Source files. Every durable mutation is
-a PathMX Action planned from parsed Source state and applied through the shared
-incremental Build pipeline.
-
-Do not commit credentials, private links, or sensitive learner information.
+Keep this repository private unless you deliberately choose to share it.

@@ -61,6 +61,24 @@ theme:
 PathMX maps supported values to `--pmx-*` variables. Use `light` and `dark`
 branches for mode-specific values. Do not assume a named theme preset exists.
 
+## Learner personalization
+
+Start from a readable repository theme. Ask for a small set of preferences
+instead of asking the learner to design an interface:
+
+- visual mood, such as calm, warm, playful, editorial, or technical;
+- one color direction;
+- light, dark, or system preference;
+- larger text, stronger contrast, reduced motion, or other access needs.
+
+Translate confirmed answers into existing theme tokens and a few repository CSS
+variables. Keep document structure, navigation, focus states, and component
+behavior stable. Prefer one restrained accent and clear surfaces over many
+decorative colors.
+
+Do not record inferred accessibility needs or personal traits. Save only what
+the learner chose.
+
 ## Fonts
 
 Load a hosted stylesheet or local font, then select the family through theme

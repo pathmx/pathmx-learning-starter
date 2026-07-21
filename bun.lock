@@ -3,27 +3,13 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "pathmx-learning-starter",
+      "name": "my-pathmx-learning-space",
       "dependencies": {
-        "@fellowhumans/pathmx": "0.1.19",
-      },
-      "devDependencies": {
-        "@types/bun": "1.3.11",
-        "typescript": "5.9.3",
+        "@fellowhumans/pathmx": "0.1.21",
       },
     },
   },
   "packages": {
-    "@fellowhumans/pathmx": ["@fellowhumans/pathmx@0.1.19", "", { "bin": { "pathmx": "dist/pathmx.js", "pmx": "dist/pathmx.js" } }, "sha512-hpJZRKEYvQeV3+n/42TI3y6eYSXRYOMzjaZTPx2nBTpJgXMCuW7ZxVOugWmRhoPaIV5ZxGlPx+dHs7YDupZIEg=="],
-
-    "@types/bun": ["@types/bun@1.3.11", "", { "dependencies": { "bun-types": "1.3.11" } }, "sha512-5vPne5QvtpjGpsGYXiFyycfpDF2ECyPcTSsFBMa0fraoxiQyMJ3SmuQIGhzPg2WJuWxVBoxWJ2kClYTcw/4fAg=="],
-
-    "@types/node": ["@types/node@26.1.1", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-nxAkRSVkN1Y0JC1W8ky/fTfkGsMmcrRsbx+3XoZE+rMOX71kLYTV7fLXpqud1GpbpP5TuffXFqfX7fH2GgZREw=="],
-
-    "bun-types": ["bun-types@1.3.11", "", { "dependencies": { "@types/node": "*" } }, "sha512-1KGPpoxQWl9f6wcZh57LvrPIInQMn2TQ7jsgxqpRzg+l0QPOFvJVH7HmvHo/AiPgwXy+/Thf6Ov3EdVn1vOabg=="],
-
-    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
-
-    "undici-types": ["undici-types@8.3.0", "", {}, "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="],
+    "@fellowhumans/pathmx": ["@fellowhumans/pathmx@0.1.21", "", { "bin": { "pathmx": "dist/pathmx.js", "pmx": "dist/pathmx.js" } }, "sha512-xd8R1+bK5L1vZr+1wku29p8qS7iwpZD7J3+r6wuwmmv7f1EJEdHG8hu4R60yTikT0M7kzMC1T3qDs1DJubE6VA=="],
   }
 }

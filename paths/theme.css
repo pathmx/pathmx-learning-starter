@@ -1,0 +1,51 @@
+/*
+  Learner theme controls. Agents may update these confirmed preferences while
+  preserving contrast, focus visibility, and reduced-motion behavior.
+*/
+:root {
+  --learning-accent-soft: color-mix(in oklch, var(--pmx-color-accent) 12%, transparent);
+  --learning-card-shadow: 0 1rem 3rem color-mix(in oklch, var(--pmx-color-fg) 7%, transparent);
+  --learning-heading-tracking: -0.025em;
+}
+.pmx-document {
+  text-wrap: pretty;
+}
+
+.pmx-document :is(h1, h2, h3) {
+  letter-spacing: var(--learning-heading-tracking);
+  text-wrap: balance;
+}
+
+.pmx-document h1 {
+  max-inline-size: 18ch;
+}
+
+.pmx-document .pmx-block {
+  scroll-margin-block: 5rem;
+}
+
+.pmx-document .pmx-block:has(> h2) {
+  padding-block: clamp(1rem, 4vw, 2.25rem);
+}
+
+.pmx-document a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.08em;
+}
+
+.pmx-document a:focus-visible {
+  border-radius: 0.2rem;
+  outline: 3px solid var(--learning-accent-soft);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pmx-document *,
+  .pmx-document *::before,
+  .pmx-document *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

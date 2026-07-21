@@ -1,22 +1,20 @@
 {
-  "name": "pathmx-learning-starter",
+  "name": "my-pathmx-learning-space",
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "pathmxCompatibility": {
+    "baseline": "0.1.21",
+    "updatePolicy": "latest-after-verification"
+  },
   "scripts": {
-    "dev": "bun run src/server.ts",
-    "demo": "bun run scripts/demo.ts",
-    "typecheck": "tsc --noEmit",
-    "test": "bun test",
-    "check": "bun run typecheck && bun test",
-    "smoke:fake": "bun test tests/onboarding.test.ts --test-name-pattern fake",
-    "smoke:codex": "bun run scripts/smoke-codex.ts"
+    "play": "pathmx play --print-url",
+    "play:open": "pathmx play --print-url --open",
+    "build": "pathmx build --clean",
+    "check": "bun run scripts/check.ts",
+    "check:candidate": "bun run scripts/check.ts --candidate"
   },
   "dependencies": {
-    "@fellowhumans/pathmx": "0.1.19"
-  },
-  "devDependencies": {
-    "@types/bun": "1.3.11",
-    "typescript": "5.9.3"
+    "@fellowhumans/pathmx": "0.1.21"
   }
 }
